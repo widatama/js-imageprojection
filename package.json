@@ -1,0 +1,24 @@
+{
+  "name": "js-imageprojection",
+  "version": "0.0.0",
+  "description": "Image projection in browser with vanilla javascript. It works by using two similar images for the original and the projected image. [See the demo](http://widatama.github.io/js-imageprojection)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:bundle": "esbuild src/index.ts --bundle --format=esm --minify --target=es2020 --outfile=dist/index.js",
+    "build:clean": "rimraf dist",
+    "build:types": "tsc --outDir dist",
+    "build": "npm run build:clean && npm run build:bundle && npm run build:types"
+  },
+  "author": "Danu Widatama",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widatama/js-imageprojection.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.14.49",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  }
+}
