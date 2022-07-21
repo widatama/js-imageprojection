@@ -1,6 +1,6 @@
 export type SurfaceOptions = {
   className: string;
-  sourceImage?: HTMLImageElement;
+  sourceImage: HTMLImageElement;
   tagName: string;
 }
 
@@ -13,7 +13,7 @@ export class Surface {
   readonly image: HTMLImageElement;
   readonly height: number;
   readonly width: number;
-  private $el: HTMLElement | null;
+  $el: HTMLElement | null;
 
   constructor(inpOptions: SurfaceOptions, doc = document) {
     const options = { ...defaultOptions, ...inpOptions };
