@@ -3,7 +3,7 @@ import tape from 'tape';
 import { Surface } from '../src/Surface';
 
 function setup(className: string, tagName: string) {
-  var sourceImage = new Image();
+  const sourceImage = new Image();
   sourceImage.src = 'an-image.jpg';
 
   return new Surface({
