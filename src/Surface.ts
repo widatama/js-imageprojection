@@ -1,10 +1,12 @@
+import { Offset } from './common';
+
 export type SurfaceOptions = {
   className: string;
   sourceImage: HTMLImageElement;
   tagName: string;
 }
 
-const defaultOptions: SurfaceOptions = {
+const defaultOptions = {
   className: 'ip-surface',
   tagName: 'div',
 };
@@ -29,10 +31,18 @@ export class Surface {
     this.$el?.setAttribute('width', this.width.toString());
   }
 
-  getOffset() {
+  getOffset(): Offset {
+    if (this.$el) {
+      return {
+        left: this.$el.offsetLeft,
+        top: this.$el.offsetTop,
+      };
+    }
+
+    // return minus to mark that element does not exist
     return {
-      left: this.$el?.offsetLeft,
-      top: this.$el?.offsetTop,
+      left: -1,
+      top: -1,
     };
   }
 

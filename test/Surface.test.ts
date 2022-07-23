@@ -4,7 +4,7 @@ import { Surface } from '../src/Surface';
 
 function setup(className: string, tagName: string) {
   const sourceImage = new Image();
-  sourceImage.src = 'an-image.jpg';
+  sourceImage.src = 'base/test/test-image.png';
 
   return new Surface({
     className,
@@ -13,7 +13,7 @@ function setup(className: string, tagName: string) {
   });
 }
 
-tape('test', (assert) => {
+tape('Surface', (assert) => {
   const className = 'ip-surface';
   const tagName = 'div';
   const surface = setup(className, tagName);
@@ -30,4 +30,3 @@ tape('test', (assert) => {
 
   assert.end();
 });
-

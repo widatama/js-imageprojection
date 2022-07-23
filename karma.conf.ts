@@ -14,7 +14,10 @@ module.exports = (config) => {
     tapReporter: {
       prettifier: 'tap-summary',
     },
-    files: ['./test/**/*.test.ts'],
+    files: [
+      './test/**/*.test.ts',
+      { pattern: './test/test-image.png', watched: false, included: false, served: true },
+    ],
     preprocessors: {
       // pass the entry file to esbuild
       './test/**/*.test.ts': ['esbuild'],
@@ -26,8 +29,8 @@ module.exports = (config) => {
       captureConsole: true,
     },
     port: 9899,
-    autoWatch: true,
-    singleRun: false,
+    autoWatch: false,
+    singleRun: true,
     colors: true,
   });
 };
