@@ -1,9 +1,9 @@
 import { Offset } from './common';
 
 export type SurfaceOptions = {
-  className: string;
+  className?: string;
   sourceImage: HTMLImageElement;
-  tagName: string;
+  tagName?: string;
 }
 
 const defaultOptions = {
@@ -12,18 +12,18 @@ const defaultOptions = {
 };
 
 export class Surface {
-  readonly image: HTMLImageElement;
+  $el: HTMLElement | null;
+  readonly $image: HTMLImageElement;
   readonly height: number;
   readonly width: number;
-  $el: HTMLElement | null;
 
   constructor(inpOptions: SurfaceOptions, doc = document) {
     const options = { ...defaultOptions, ...inpOptions };
 
-    this.image = new Image();
-    this.image.src = "";
-    this.height = this.image.height;
-    this.width = this.image.width;
+    this.$image = new Image();
+    this.$image.src = options.sourceImage.getAttribute('src') as string;
+    this.height = this.$image.height;
+    this.width = this.$image.width;
 
     this.$el = doc.createElement(options.tagName);
     this.$el?.setAttribute('class', options.className);

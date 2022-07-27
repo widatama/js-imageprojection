@@ -18,7 +18,7 @@ tape('Surface', (assert) => {
   const tagName = 'div';
   const surface = setup(className, tagName);
 
-  assert.ok(surface.image, 'Image created');
+  assert.ok(surface.$image, 'Image created');
   assert.notEqual(surface.width, undefined, 'Width defined');
   assert.notEqual(surface.height, undefined, 'Height defined');
   assert.ok(surface.$el, 'Element created');

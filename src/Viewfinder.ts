@@ -21,10 +21,10 @@ const defaultOptions = {
 };
 
 export class Viewfinder {
-  size: { height: number; width: number };
-  className: string;
-  position: Offset | Record<string, never>;
   $el: HTMLElement | null;
+  readonly size: { height: number; width: number };
+  readonly className: string;
+  position: Offset | Record<string, never>;
 
   constructor(inpOptions: ViewfinderOptions, doc = document) {
     const options = { ...defaultOptions, ...inpOptions };

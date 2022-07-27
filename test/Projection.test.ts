@@ -22,7 +22,7 @@ tape('Projection', (assert) => {
 
   assert.plan(13);
 
-  assert.ok(projection.image, 'Image created');
+  assert.ok(projection.$image, 'Image created');
   assert.notEqual(projection.width, undefined, 'Width defined');
   assert.notEqual(projection.height, undefined, 'Height defined');
   assert.ok(projection.$el, 'Element created');

@@ -13,11 +13,11 @@ const defaultOptions = {
 };
 
 export class Projection {
-  className: string;
-  image: HTMLImageElement;
-  width: number;
-  height: number;
   $el: HTMLElement | null;
+  $image: HTMLImageElement;
+  readonly className: string;
+  readonly width: number;
+  readonly height: number;
 
   constructor(inpOptions: ProjectionOptions, glbl = window) {
     const options = { ...defaultOptions, ...inpOptions };
@@ -28,14 +28,14 @@ export class Projection {
     this.$el.style.left = options.position.left.toString();
     this.$el.style.top = options.position.top.toString();
 
-    this.image = new Image();
-    this.image.src = options.imageUrl;
-    this.width = this.image.width;
-    this.height = this.image.height;
+    this.$image = new Image();
+    this.$image.src = options.imageUrl;
+    this.width = this.$image.width;
+    this.height = this.$image.height;
 
-    this.image.onload = () => {
+    this.$image.onload = () => {
       if (this.$el) {
-        this.$el.style['background-image'] = `url('${this.image.src}')`;
+        this.$el.style['background-image'] = `url('${this.$image.src}')`;
         this.$el.style['background-repeat'] = 'no-repeat';
 
         const event = new glbl.CustomEvent('ip.projection.imageLoaded', { bubbles: true });
