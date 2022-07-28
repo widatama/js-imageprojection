@@ -34,7 +34,7 @@ export class Viewfinder {
     this.position = {};
 
     this.$el = doc.createElement(options.tagName);
-    this.$el.setAttribute('class', options.className);
+    this.$el.classList.add(options.className);
     this.$el.style.height = `${options.size.height.toString()}px`;
     this.$el.style.width =  `${options.size.width.toString()}px`;
   }
@@ -48,8 +48,8 @@ export class Viewfinder {
 
     if (this.$el) {
       // Calculate viewfinder position while keeping the mouse pointer at the center of viewfinder
-      position.left = (mousePosition.left - (this.$el.offsetWidth / 2));
-      position.top = (mousePosition.top - (this.$el.offsetHeight / 2));
+      position.left = (mousePosition.left - (this.$el.getBoundingClientRect().width / 2));
+      position.top = (mousePosition.top - (this.$el.getBoundingClientRect().height / 2));
 
       // Keep viewfinder from getting out of top or left boundaries
       position.left = math.max(position.left, 0);

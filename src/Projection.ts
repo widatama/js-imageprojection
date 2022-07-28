@@ -1,14 +1,19 @@
-import { Offset } from './common';
+import { Offset, Size } from './common';
 
 export type ProjectionOptions = {
   className?: string;
   imageUrl: string;
   position: Offset;
+  size?: Size,
   tagName?: string;
-}
+};
 
 const defaultOptions = {
   className: 'ip-projection',
+  size: {
+    height: 0,
+    width: 0
+  },
   tagName: 'div',
 };
 
@@ -24,14 +29,14 @@ export class Projection {
 
     this.className = options.className;
     this.$el = glbl.document.createElement(options.tagName);
-    this.$el.setAttribute('class', options.className);
+    this.$el.classList.add(options.className);
     this.$el.style.left = options.position.left.toString();
     this.$el.style.top = options.position.top.toString();
 
     this.$image = new Image();
     this.$image.src = options.imageUrl;
-    this.width = this.$image.width;
-    this.height = this.$image.height;
+    this.width = options.size.width;
+    this.height = options.size.height;
 
     this.$image.onload = () => {
       if (this.$el) {

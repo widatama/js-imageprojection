@@ -26,16 +26,18 @@ export class Surface {
     this.width = this.$image.width;
 
     this.$el = doc.createElement(options.tagName);
-    this.$el?.setAttribute('class', options.className);
+    this.$el?.classList.add(options.className);
     this.$el?.setAttribute('height', this.height.toString());
     this.$el?.setAttribute('width', this.width.toString());
   }
 
   getOffset(): Offset {
     if (this.$el) {
+      const domRect = this.$el.getBoundingClientRect();
+
       return {
-        left: this.$el.offsetLeft,
-        top: this.$el.offsetTop,
+        left: domRect.x,
+        top: domRect.y,
       };
     }
 

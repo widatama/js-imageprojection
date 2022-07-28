@@ -14,8 +14,8 @@ export class Container {
   readonly $body: HTMLElement;
   $el: HTMLElement | null;
   readonly $image: HTMLImageElement;
-  readonly heightRatio: number;
-  readonly widthRatio: number;
+  heightRatio: number;
+  widthRatio: number;
   readonly surface: Surface;
   readonly projection: Projection;
   readonly viewfinder: Viewfinder;
@@ -27,7 +27,7 @@ export class Container {
     this.$body = doc.querySelector('html') as HTMLElement;
 
     // Container should be relatively positioned, class name is assigned so it can be handled with css
-    this.$el.setAttribute('class', options.className);
+    this.$el.classList.add(options.className);
     this.$image = this.$el.querySelector('img.ip-source-image') as HTMLImageElement;
 
     // Create surface
@@ -42,13 +42,13 @@ export class Container {
 
     // Create projection
     this.projection = new Projection({
-      imageUrl: "",
-      position: { left: this.surface.width + 30, top: 0 }
+      imageUrl: this.$image.dataset.pimg as string,
+      position: { left: this.surface.width + 30, top: 0 },
+      size: { height: this.surface.height, width: this.surface.width },
     });
 
-    // Calculate ratio between projection and surface
-    this.heightRatio = this.projection.$image.height / this.surface.height;
-    this.widthRatio = this.projection.$image.width / this.surface.width;
+    this.heightRatio = 1;
+    this.widthRatio = 1;
 
     // Build DOM when projection image is loaded
     this.projection.$el?.addEventListener('ip.projection.imageLoaded', this.buildDOM.bind(this));
@@ -62,6 +62,10 @@ export class Container {
   }
 
   buildDOM() {
+    // Calculate ratio between projection and surface
+    this.heightRatio = this.projection.$image.height / this.surface.height;
+    this.widthRatio = this.projection.$image.width / this.surface.width;
+
     this.viewfinder.setSize({
       height: this.surface.height / this.heightRatio,
       width: this.surface.width / this.widthRatio,
