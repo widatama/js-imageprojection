@@ -49,6 +49,11 @@ body {
 
 /* This part is needed for image projection to work */
 
+.ip-container {
+  position: relative;
+  width: fit-content;
+}
+
 .ip-surface {
   position: absolute;
   z-index: 2;
@@ -78,11 +83,12 @@ body {
 .ip-projection {
   position: absolute;
   z-index: 3;
+  left: 600px;
   top: 0;
 
   transition: opacity .2s ease-in-out;
 
-  opacity: 1;
+  opacity: 0;
 }
 
 .ip-projection--visible {

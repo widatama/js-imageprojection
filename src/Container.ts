@@ -1,10 +1,12 @@
 import { Surface } from './Surface';
 import { Projection } from './Projection';
 import { Viewfinder } from './Viewfinder';
+import { Offset } from './common';
 
 export type ContainerOptions = {
   className?: string;
-}
+  projectionPosition?: Offset;
+};
 
 const defaultOptions = {
   className: 'ip-container',
@@ -43,7 +45,7 @@ export class Container {
     // Create projection
     this.projection = new Projection({
       imageUrl: this.$image.dataset.pimg as string,
-      position: { left: this.surface.width + 30, top: 0 },
+      position: options.projectionPosition,
       size: { height: this.surface.height, width: this.surface.width },
     });
 

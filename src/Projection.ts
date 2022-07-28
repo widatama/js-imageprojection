@@ -3,7 +3,7 @@ import { Offset, Size } from './common';
 export type ProjectionOptions = {
   className?: string;
   imageUrl: string;
-  position: Offset;
+  position?: Offset;
   size?: Size,
   tagName?: string;
 };
@@ -30,8 +30,10 @@ export class Projection {
     this.className = options.className;
     this.$el = glbl.document.createElement(options.tagName);
     this.$el.classList.add(options.className);
-    this.$el.style.left = options.position.left.toString();
-    this.$el.style.top = options.position.top.toString();
+    if (options.position) {
+      this.$el.style.left = options.position.left.toString();
+      this.$el.style.top = options.position.top.toString();
+    }
 
     this.$image = new Image();
     this.$image.src = options.imageUrl;
