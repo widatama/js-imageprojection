@@ -30,6 +30,8 @@ export class Container {
 
     // Container should be relatively positioned, class name is assigned so it can be handled with css
     this.$el.classList.add(options.className);
+    this.$el.style.position = 'relative';
+    this.$el.style.width = 'fit-content';
     this.$image = this.$el.querySelector('img.ip-source-image') as HTMLImageElement;
 
     // Create surface

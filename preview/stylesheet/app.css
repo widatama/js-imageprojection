@@ -49,11 +49,6 @@ body {
 
 /* This part is needed for image projection to work */
 
-.ip-container {
-  position: relative;
-  width: fit-content;
-}
-
 .ip-surface {
   position: absolute;
   z-index: 2;
