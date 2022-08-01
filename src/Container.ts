@@ -1,16 +1,12 @@
+import { defaultClassPrefix, Offset } from './common';
 import { Surface } from './Surface';
 import { Projection } from './Projection';
 import { Viewfinder } from './Viewfinder';
-import { Offset } from './common';
 
 export type ContainerOptions = {
-  className?: string;
+  classPrefix?: string;
   projectionImageUrl: string;
   projectionPosition?: Offset;
-};
-
-const defaultOptions = {
-  className: 'ip-container',
 };
 
 export class Container {
@@ -23,30 +19,39 @@ export class Container {
   readonly projection: Projection;
   readonly viewfinder: Viewfinder;
 
+  static readonly elClassName = 'container';
+  static readonly defaultOptions = {
+    classPrefix: defaultClassPrefix,
+  };
+
   constructor(inpElement: HTMLElement, inpOptions?: ContainerOptions, doc = document) {
-    const options = { ...defaultOptions, ...inpOptions };
+    const options = { ...Container.defaultOptions, ...inpOptions };
 
     this.$el = inpElement;
     this.$body = doc.querySelector('html') as HTMLElement;
 
-    // Container should be relatively positioned, class name is assigned so it can be handled with css
-    this.$el.classList.add(options.className);
+    // Class name is assigned to container so it can be styled with css
+    this.$el.classList.add(`${options.classPrefix}${Container.elClassName}`);
+    // Container should be relatively positioned with proper size
     this.$el.style.position = 'relative';
     this.$el.style.width = 'fit-content';
     this.$image = this.$el.querySelector('img') as HTMLImageElement;
 
     // Create surface
     this.surface = new Surface({
+      classPrefix: options.classPrefix,
       sourceImage: this.$image,
     });
 
     // Create viewfinder
     this.viewfinder = new Viewfinder({
+      classPrefix: options.classPrefix,
       size: { height: this.surface.height, width: this.surface.width },
     });
 
     // Create projection
     this.projection = new Projection({
+      classPrefix: options.classPrefix,
       imageUrl: options.projectionImageUrl as string,
       position: options.projectionPosition,
       size: { height: this.surface.height, width: this.surface.width },

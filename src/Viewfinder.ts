@@ -1,24 +1,13 @@
-import { Offset, Size } from './common';
+import { defaultClassPrefix, Offset, Size } from './common';
 
 export type ViewfinderOptions = {
+  classPrefix?: string;
   size?: {
     height: number;
     width: number;
   };
-  className?: string;
   tagName?: string;
 }
-
-const defaultOptions = {
-  size: {
-    height: 100,
-    width: 100,
-  },
-  className: 'ip-viewfinder',
-  height: 1,
-  tagName: 'div',
-  width: 1,
-};
 
 export class Viewfinder {
   $el: HTMLElement | null;
@@ -26,15 +15,25 @@ export class Viewfinder {
   readonly className: string;
   position: Offset | Record<string, never>;
 
+  static readonly elClassName = 'viewfinder';
+  static readonly defaultOptions = {
+    classPrefix: defaultClassPrefix,
+    size: {
+      height: 100,
+      width: 100,
+    },
+    tagName: 'div',
+  };
+
   constructor(inpOptions: ViewfinderOptions, doc = document) {
-    const options = { ...defaultOptions, ...inpOptions };
+    const options = { ...Viewfinder.defaultOptions, ...inpOptions };
 
     this.size = options.size;
-    this.className = options.className;
+    this.className = `${options.classPrefix}${Viewfinder.elClassName}`;
     this.position = {};
 
     this.$el = doc.createElement(options.tagName);
-    this.$el.classList.add(options.className);
+    this.$el.classList.add(this.className);
     this.$el.style.height = `${options.size.height.toString()}px`;
     this.$el.style.width =  `${options.size.width.toString()}px`;
   }

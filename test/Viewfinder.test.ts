@@ -1,15 +1,13 @@
 import tape from 'tape';
 
+import { defaultClassPrefix } from '../src/common';
 import { Viewfinder } from '../src/Viewfinder';
 
 tape('Viewfinder', (assert) => {
-  const options = {
-    className: 'ip-viewfinder',
-  };
-  const viewfinder = new Viewfinder(options);
+  const viewfinder = new Viewfinder({});
 
   assert.ok(viewfinder.$el, 'Element created');
-  assert.ok(viewfinder.$el?.classList.contains(options.className), 'Element css class set');
+  assert.ok(viewfinder.$el?.classList.contains(`${defaultClassPrefix}${Viewfinder.elClassName}`), 'Element css class set');
   assert.ok(viewfinder.$el?.style.height, 'Element height set');
   assert.ok(viewfinder.$el?.style.width, 'Element width set');
 
@@ -25,10 +23,10 @@ tape('Viewfinder', (assert) => {
   assert.equal(viewfinder.$el?.style.width, `${newSize.width}px`, 'Element width changed');
 
   viewfinder.show();
-  assert.ok(viewfinder.$el?.classList.contains(`${options.className}--visible`), 'Element shown');
+  assert.ok(viewfinder.$el?.classList.contains(`${defaultClassPrefix}${Viewfinder.elClassName}--visible`), 'Element shown');
 
   viewfinder.hide();
-  assert.notOk(viewfinder.$el?.classList.contains(`${options.className}--visible`), 'Element hidden');
+  assert.notOk(viewfinder.$el?.classList.contains(`${defaultClassPrefix}${Viewfinder.elClassName}--visible`), 'Element hidden');
 
   viewfinder.destroy();
   assert.notOk(viewfinder.$el, 'Element removed');

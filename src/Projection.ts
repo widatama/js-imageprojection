@@ -1,20 +1,11 @@
-import { Offset, Size } from './common';
+import { defaultClassPrefix, Offset, Size } from './common';
 
 export type ProjectionOptions = {
-  className?: string;
+  classPrefix?: string;
   imageUrl: string;
   position?: Offset;
   size?: Size,
   tagName?: string;
-};
-
-const defaultOptions = {
-  className: 'ip-projection',
-  size: {
-    height: 0,
-    width: 0
-  },
-  tagName: 'div',
 };
 
 export class Projection {
@@ -24,12 +15,22 @@ export class Projection {
   readonly width: number;
   readonly height: number;
 
-  constructor(inpOptions: ProjectionOptions, glbl = window) {
-    const options = { ...defaultOptions, ...inpOptions };
+  static readonly elClassName = 'projection';
+  static readonly defaultOptions = {
+    classPrefix: defaultClassPrefix,
+    size: {
+      height: 0,
+      width: 0,
+    },
+    tagName: 'div',
+  };
 
-    this.className = options.className;
+  constructor(inpOptions: ProjectionOptions, glbl = window) {
+    const options = { ...Projection.defaultOptions, ...inpOptions };
+
+    this.className = `${options.classPrefix}${Projection.elClassName}`;
     this.$el = glbl.document.createElement(options.tagName);
-    this.$el.classList.add(options.className);
+    this.$el.classList.add(this.className);
     if (options.position) {
       this.$el.style.left = options.position.left.toString();
       this.$el.style.top = options.position.top.toString();

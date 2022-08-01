@@ -1,15 +1,10 @@
-import { Offset } from './common';
+import { defaultClassPrefix, Offset } from './common';
 
 export type SurfaceOptions = {
-  className?: string;
+  classPrefix?: string;
   sourceImage: HTMLImageElement;
   tagName?: string;
 }
-
-const defaultOptions = {
-  className: 'ip-surface',
-  tagName: 'div',
-};
 
 export class Surface {
   $el: HTMLElement | null;
@@ -17,8 +12,14 @@ export class Surface {
   readonly height: number;
   readonly width: number;
 
+  static readonly elClassName = 'surface';
+  static readonly defaultOptions = {
+    classPrefix: defaultClassPrefix,
+    tagName: 'div',
+  };
+
   constructor(inpOptions: SurfaceOptions, doc = document) {
-    const options = { ...defaultOptions, ...inpOptions };
+    const options = { ...Surface.defaultOptions, ...inpOptions };
 
     this.$image = new Image();
     this.$image.src = options.sourceImage.getAttribute('src') as string;
@@ -26,7 +27,7 @@ export class Surface {
     this.width = this.$image.width;
 
     this.$el = doc.createElement(options.tagName);
-    this.$el?.classList.add(options.className);
+    this.$el?.classList.add(`${options.classPrefix}${Surface.elClassName}`);
     this.$el?.setAttribute('height', this.height.toString());
     this.$el?.setAttribute('width', this.width.toString());
   }
