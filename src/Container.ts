@@ -5,6 +5,7 @@ import { Offset } from './common';
 
 export type ContainerOptions = {
   className?: string;
+  projectionImageUrl: string;
   projectionPosition?: Offset;
 };
 
@@ -32,7 +33,7 @@ export class Container {
     this.$el.classList.add(options.className);
     this.$el.style.position = 'relative';
     this.$el.style.width = 'fit-content';
-    this.$image = this.$el.querySelector('img.ip-source-image') as HTMLImageElement;
+    this.$image = this.$el.querySelector('img') as HTMLImageElement;
 
     // Create surface
     this.surface = new Surface({
@@ -46,7 +47,7 @@ export class Container {
 
     // Create projection
     this.projection = new Projection({
-      imageUrl: this.$image.dataset.pimg as string,
+      imageUrl: options.projectionImageUrl as string,
       position: options.projectionPosition,
       size: { height: this.surface.height, width: this.surface.width },
     });

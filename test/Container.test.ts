@@ -7,12 +7,11 @@ tape('Container', (assert) => {
 
   const $image = document.createElement('img');
   $image.setAttribute('src', 'base/test/test-image.png');
-  $image.setAttribute('class', 'ip-source-image');
 
   const $container = document.createElement('div');
   $container.appendChild($image);
 
-  const container = new Container($container);
+  const container = new Container($container, { projectionImageUrl: 'base/test/test-image.png' });
 
   assert.ok(container.$el, 'Element exists');
   assert.ok(container.$el?.classList.contains(className), 'Element css class set');
