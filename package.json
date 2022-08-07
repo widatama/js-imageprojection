@@ -1,6 +1,6 @@
 {
   "name": "@widatama/js-imageprojection",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Image projection in browser with vanilla javascript. It works by using two similar images for the original and the projected image. [See the demo](http://widatama.github.io/js-imageprojection)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
