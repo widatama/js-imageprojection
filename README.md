@@ -1,6 +1,6 @@
 Simple image projection in vanilla Javascript. [See the demo](http://widatama.github.io/js-imageprojection).
 
-![Image Projection Diagram](images/diagram.jpg "Image Projection Diagram")
+![Image Projection Diagram](/preview/images/diagram.jpg "Image Projection Diagram")
 
 Whenever the surface is hovered, the viewfinder and the projection show up. Everything covered by the viewfinder is shown as the projection.
 
@@ -64,7 +64,7 @@ In general, the viewfinder and projection have to be shown when `--visible` clas
 .ip-projection--visible {
   opacity: 1;
 }
-```css
+```
 
 ### Initiate the container
 
