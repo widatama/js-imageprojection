@@ -6,7 +6,9 @@ Whenever the surface is hovered, the viewfinder and the projection show up. Ever
 
 ## Usage
 
-### Install package (tba)
+### Install package
+
+Package is hosted in github https://github.com/widatama/js-imageprojection/pkgs/npm/js-imageprojection
 
 ### Prepare HTML
 
