@@ -13,6 +13,9 @@
     "test": "karma start ./karma.conf.ts"
   },
   "author": "Danu Widatama",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/widatama/js-imageprojection.git"
