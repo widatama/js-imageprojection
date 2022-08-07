@@ -8,7 +8,7 @@ import karmaTapPrettyReporter from 'karma-tap-pretty-reporter';
 module.exports = (config) => {
   config.set({
     plugins: [karmaEsbuild, karmaFirefoxLauncher, karmaTap, karmaTapPrettyReporter],
-    browsers: ['Firefox'],
+    browsers: ['FirefoxHeadless'],
     frameworks: ['tap'],
     reporters: ['tap-pretty'],
     tapReporter: {
