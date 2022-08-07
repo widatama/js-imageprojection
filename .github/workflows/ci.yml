@@ -10,7 +10,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - uses: browser-actions/setup-firefox@latest
       - run: npm ci
+      - run: npm test
       - run: npm run build
       - uses: actions/upload-artifact@v3
         with:
