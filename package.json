@@ -9,6 +9,7 @@
     "build:clean": "rimraf dist",
     "build:types": "tsc --outDir dist",
     "build": "npm run build:clean && npm run build:bundle && npm run build:types",
+    "build:preview": "esbuild preview/javascript/app.ts --bundle --outdir=preview/javascript --format=iife --target=es2020",
     "start": "esbuild preview/javascript/app.ts --bundle --outdir=preview/javascript --servedir=preview --serve=9999 --format=iife --target=es2020",
     "test": "karma start ./karma.conf.ts"
   },

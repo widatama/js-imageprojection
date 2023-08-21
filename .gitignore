@@ -3,6 +3,7 @@
 
 dist/
 node_modules/
+preview/javascript/app.js
 
 temp*/
 tmp/
