@@ -4,7 +4,7 @@ export type SurfaceOptions = {
   classPrefix?: string;
   sourceImage: HTMLImageElement;
   tagName?: string;
-}
+};
 
 export class Surface {
   $el: HTMLElement | null;

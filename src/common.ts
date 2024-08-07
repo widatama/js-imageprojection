@@ -1,6 +1,6 @@
 export type Offset = {
   left: number;
-  top: number
+  top: number;
 };
 
 export type Size = {

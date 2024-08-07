@@ -7,7 +7,7 @@ export type ViewfinderOptions = {
     width: number;
   };
   tagName?: string;
-}
+};
 
 export class Viewfinder {
   $el: HTMLElement | null;
@@ -35,7 +35,7 @@ export class Viewfinder {
     this.$el = doc.createElement(options.tagName);
     this.$el.classList.add(this.className);
     this.$el.style.height = `${options.size.height.toString()}px`;
-    this.$el.style.width =  `${options.size.width.toString()}px`;
+    this.$el.style.width = `${options.size.width.toString()}px`;
   }
 
   // Calculate viewfinder position based on mouse position
@@ -80,7 +80,7 @@ export class Viewfinder {
   setSize(size: Size) {
     if (this.$el) {
       this.$el.style.height = `${size.height.toString()}px`;
-      this.$el.style.width =  `${size.width.toString()}px`;
+      this.$el.style.width = `${size.width.toString()}px`;
     }
   }
 

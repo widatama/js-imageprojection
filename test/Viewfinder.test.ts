@@ -12,11 +12,11 @@ tape('Viewfinder', (assert) => {
   assert.ok(viewfinder.$el?.style.width, 'Element width set');
 
   const currentPosition = viewfinder.position;
-  const mousePosition = {left: 50, top: 60};
+  const mousePosition = { left: 50, top: 60 };
   viewfinder.setPosition(mousePosition);
   assert.notEqual(viewfinder.position, currentPosition, 'Element moved');
 
-  const newSize = {height: 200, width: 200};
+  const newSize = { height: 200, width: 200 };
   viewfinder.setSize(newSize);
   console.warn(viewfinder.$el?.style.height);
   assert.equal(viewfinder.$el?.style.height, `${newSize.height}px`, 'Element height changed');

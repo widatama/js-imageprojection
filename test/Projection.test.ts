@@ -15,7 +15,7 @@ tape('Projection', (assert) => {
 
   const backgroundImagePosition = {
     left: 20,
-    top: 10
+    top: 10,
   };
 
   const projection = new Projection(options);
@@ -28,7 +28,7 @@ tape('Projection', (assert) => {
   assert.ok(projection.$el, 'Element created');
   assert.ok(projection.$el?.classList.contains(`${defaultClassPrefix}${Projection.elClassName}`), 'Element css class set');
 
-  projection.$el?.addEventListener('ip.projection.imageLoaded', function() {
+  projection.$el?.addEventListener('ip.projection.imageLoaded', function () {
     assert.ok(projection.$el?.style['background-image'], 'Background image set');
     assert.equal(projection.$el?.style['background-repeat'], 'no-repeat', 'Background no-repeat set');
 

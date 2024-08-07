@@ -4,7 +4,7 @@ export type ProjectionOptions = {
   classPrefix?: string;
   imageUrl: string;
   position?: Offset;
-  size?: Size,
+  size?: Size;
   tagName?: string;
 };
 
