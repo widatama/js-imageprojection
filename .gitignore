@@ -8,3 +8,5 @@ preview/javascript/app.js
 temp*/
 tmp/
 *.log*
+
+.eslintcache
