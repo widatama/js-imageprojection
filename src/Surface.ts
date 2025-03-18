@@ -21,8 +21,7 @@ export class Surface {
   constructor(inpOptions: SurfaceOptions, doc = document) {
     const options = { ...Surface.defaultOptions, ...inpOptions };
 
-    this.$image = new Image();
-    this.$image.src = options.sourceImage.getAttribute('src') as string;
+    this.$image = options.sourceImage;
     this.height = this.$image.height;
     this.width = this.$image.width;
 

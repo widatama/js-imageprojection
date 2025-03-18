@@ -1,11 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const { includeIgnoreFile } = require('@eslint/compat');
-const eslintJS = require('@eslint/js');
-const stylistic = require('@stylistic/eslint-plugin');
-const globals = require('globals');
-const eslintTS = require('typescript-eslint');
+import { includeIgnoreFile } from '@eslint/compat';
+import eslintJS from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
+import globals from 'globals';
+import eslintTS from 'typescript-eslint';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const gitignoreFilePath = path.resolve(__dirname, '.gitignore');
 
@@ -28,7 +32,7 @@ const rulesTS = {
   ...eslintStyleTS.rules,
 };
 
-module.exports = [
+export default [
   {
     // for config files
     files: ['**/*.{conf|config}.{ts|cjs}'],
