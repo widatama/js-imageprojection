@@ -2,24 +2,20 @@
 (() => {
   var __defProp = Object.defineProperty;
   var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __publicField = (obj, key, value) => {
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
-  };
+  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
   // src/common.ts
   var defaultClassPrefix = "ip-";
 
   // src/Surface.ts
-  var _Surface = class {
+  var _Surface = class _Surface {
     constructor(inpOptions, doc = document) {
       __publicField(this, "$el");
       __publicField(this, "$image");
       __publicField(this, "height");
       __publicField(this, "width");
       const options = { ..._Surface.defaultOptions, ...inpOptions };
-      this.$image = new Image();
-      this.$image.src = options.sourceImage.getAttribute("src");
+      this.$image = options.sourceImage;
       this.height = this.$image.height;
       this.width = this.$image.width;
       this.$el = doc.createElement(options.tagName);
@@ -45,15 +41,15 @@
       this.$el = null;
     }
   };
-  var Surface = _Surface;
-  __publicField(Surface, "elClassName", "surface");
-  __publicField(Surface, "defaultOptions", {
+  __publicField(_Surface, "elClassName", "surface");
+  __publicField(_Surface, "defaultOptions", {
     classPrefix: defaultClassPrefix,
     tagName: "div"
   });
+  var Surface = _Surface;
 
   // src/Projection.ts
-  var _Projection = class {
+  var _Projection = class _Projection {
     constructor(inpOptions, glbl = window) {
       __publicField(this, "$el");
       __publicField(this, "$image");
@@ -105,9 +101,8 @@
       this.$el = null;
     }
   };
-  var Projection = _Projection;
-  __publicField(Projection, "elClassName", "projection");
-  __publicField(Projection, "defaultOptions", {
+  __publicField(_Projection, "elClassName", "projection");
+  __publicField(_Projection, "defaultOptions", {
     classPrefix: defaultClassPrefix,
     size: {
       height: 0,
@@ -115,9 +110,10 @@
     },
     tagName: "div"
   });
+  var Projection = _Projection;
 
   // src/Viewfinder.ts
-  var _Viewfinder = class {
+  var _Viewfinder = class _Viewfinder {
     constructor(inpOptions, doc = document) {
       __publicField(this, "$el");
       __publicField(this, "size");
@@ -132,6 +128,7 @@
       this.$el.style.height = `${options.size.height.toString()}px`;
       this.$el.style.width = `${options.size.width.toString()}px`;
     }
+    // Calculate viewfinder position based on mouse position
     calculatePosition(mousePosition, math = Math) {
       const position = {
         left: 0,
@@ -142,8 +139,14 @@
         position.top = mousePosition.top - this.$el.getBoundingClientRect().height / 2;
         position.left = math.max(position.left, 0);
         position.top = math.max(position.top, 0);
-        position.left = math.min(position.left, this.size.width - this.$el.offsetWidth);
-        position.top = Math.min(position.top, this.size.height - this.$el.offsetHeight);
+        position.left = math.min(
+          position.left,
+          this.size.width - this.$el.offsetWidth
+        );
+        position.top = Math.min(
+          position.top,
+          this.size.height - this.$el.offsetHeight
+        );
       }
       return position;
     }
@@ -175,9 +178,8 @@
       this.$el = null;
     }
   };
-  var Viewfinder = _Viewfinder;
-  __publicField(Viewfinder, "elClassName", "viewfinder");
-  __publicField(Viewfinder, "defaultOptions", {
+  __publicField(_Viewfinder, "elClassName", "viewfinder");
+  __publicField(_Viewfinder, "defaultOptions", {
     classPrefix: defaultClassPrefix,
     size: {
       height: 100,
@@ -185,9 +187,10 @@
     },
     tagName: "div"
   });
+  var Viewfinder = _Viewfinder;
 
   // src/Container.ts
-  var _Container = class {
+  var _Container = class _Container {
     constructor(inpElement, inpOptions, doc = document) {
       __publicField(this, "$body");
       __publicField(this, "$el");
@@ -268,11 +271,11 @@
       this.$el = null;
     }
   };
-  var Container = _Container;
-  __publicField(Container, "elClassName", "container");
-  __publicField(Container, "defaultOptions", {
+  __publicField(_Container, "elClassName", "container");
+  __publicField(_Container, "defaultOptions", {
     classPrefix: defaultClassPrefix
   });
+  var Container = _Container;
 
   // preview/javascript/app.ts
   var run = () => {
