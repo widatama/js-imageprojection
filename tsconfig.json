@@ -7,8 +7,9 @@
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "outFile": "dist/index.js"
+    "moduleResolution": "bundler",
+    "rootDir": "./src",
+    "types": ["node"]
   },
   "exclude": ["node_modules/", "test/"],
   "include": ["src/**/*"],

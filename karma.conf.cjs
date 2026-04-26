@@ -1,9 +1,17 @@
-import GlobalsPolyfills from '@esbuild-plugins/node-globals-polyfill';
-import NodeModulesPolyfills from '@esbuild-plugins/node-modules-polyfill';
-import karmaEsbuild from 'karma-esbuild';
-import karmaFirefoxLauncher from 'karma-firefox-launcher';
-import karmaTap from 'karma-tap';
-import karmaTapPrettyReporter from 'karma-tap-pretty-reporter';
+require('ts-node').register({
+  compilerOptions: {
+    module: 'commonjs',
+    target: 'es2017',
+    moduleResolution: 'node',
+  },
+});
+
+const GlobalsPolyfills = require('@esbuild-plugins/node-globals-polyfill').default;
+const NodeModulesPolyfills = require('@esbuild-plugins/node-modules-polyfill').default;
+const karmaEsbuild = require('karma-esbuild');
+const karmaFirefoxLauncher = require('karma-firefox-launcher');
+const karmaTap = require('karma-tap');
+const karmaTapPrettyReporter = require('karma-tap-pretty-reporter');
 
 module.exports = (config) => {
   config.set({
@@ -19,7 +27,6 @@ module.exports = (config) => {
       { pattern: './test/test-image.png', watched: false, included: false, served: true },
     ],
     preprocessors: {
-      // pass the entry file to esbuild
       './test/**/*.test.ts': ['esbuild'],
     },
     esbuild: {
