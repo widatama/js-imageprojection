@@ -1,11 +1,3 @@
-require('ts-node').register({
-  compilerOptions: {
-    module: 'commonjs',
-    target: 'es2017',
-    moduleResolution: 'node',
-  },
-});
-
 const GlobalsPolyfills = require('@esbuild-plugins/node-globals-polyfill').default;
 const NodeModulesPolyfills = require('@esbuild-plugins/node-modules-polyfill').default;
 const karmaEsbuild = require('karma-esbuild');
